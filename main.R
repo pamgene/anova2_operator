@@ -1,9 +1,47 @@
 library(tercen)
 library(dplyr)
+library(tibble)
 
-(ctx = tercenCtx())  %>% 
-  select(.y, .ci, .ri) %>% 
+do.anova = function(df, interact = FALSE){
+  f.stat = NaN
+  numdf = NaN
+  dendf = NaN
+  p.value = NaN
+  r.squared = NaN
+  adj.r.squared = NaN
+  formula = ifelse(interact, ".y ~ .group.colors1 * .group.colors2", ".y ~ .group.colors1 + .group.colors2")
+  aLm = try(lm(formula, data=df), silent = TRUE)
+  if(!inherits(aLm, 'try-error')) {
+    anova    = anova(aLm) %>% 
+      rownames_to_column('rows') %>% 
+      filter(grepl(".group.colors", rows)) %>% 
+      select(-rows)
+    Df       = anova$Df
+    sum.sq   = anova$'Sum Sq'
+    mean.sq  = anova$'Mean Sq'
+    f.values = anova$'F value'
+    p.values = anova$'Pr(>F)'
+  } 
+  return (data.frame(.ri     = df$.ri[1], 
+                     .ci     = df$.ci[1],
+                     Df      = Df,
+                     sum.sq  = sum.sq,
+                     mean.sq = mean.sq,
+                     f.value = f.values,
+                     p.value = p.values))
+}
+
+ctx = tercenCtx()
+
+if (length(ctx$colors) < 2) stop("Two color factors are required.")
+
+Interaction = ifelse(is.null(ctx$op.value('Interaction')), FALSE, as.logical(ctx$op.value('Interaction')))
+
+ctx %>% 
+  select(.ci, .ri, .y) %>%
+  mutate(.group.colors1 = do.call(function(...) paste(..., sep='.'), ctx$select(ctx$colors[[1]]))) %>%
+  mutate(.group.colors2 = do.call(function(...) paste(..., sep='.'), ctx$select(ctx$colors[[2]]))) %>%
   group_by(.ci, .ri) %>%
-  summarise(median = median(.y)) %>%
+  do(do.anova(., Interaction)) %>%
   ctx$addNamespace() %>%
   ctx$save()
