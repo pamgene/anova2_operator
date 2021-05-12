@@ -1,50 +1,28 @@
-# Template R operator
-
-The `Template R operator` is a template repository for the creation of R operators in Tercen. An overview of steps for developing an operator are:
-
-1. create a github repo
-2. install tercen_studio
-3. login to tercen_studio
-4. git clone the newly created repo
-5. start developing in R in tercen_studio
-6. add R packages to the repo
-7. push to the github repo
-8. go to tercen and install the operator
-
-More information can be found in [Tercen app builder's guide](https://tercen.github.io/appbuilders-guide/).
-
-Below is the operator README standard structure:
+# ANOVA 2-way operator
 
 ##### Description
 
-The `Template R operator` is a template repository for the creation of R operators in Tercen.
+The `anova2` operator tests for a significant difference in the mean between any of the groups in the input data.
 
 ##### Usage
 
 Input projection|.
 ---|---
-`x-axis`        | type, description 
-`y-axis`        | type, description 
-`row`           | type, description 
-`column`        | type, description 
-`colors`        | type, description 
-`labels`        | type, description 
-
-Input parameters|.
----|---
-`input_var`        | parameter description
+`y-axis`| measurement value
+`color` | represents the groups to compare
 
 Output relations|.
 ---|---
-`output_var`        | output relation
-`Operator view`        | view of the Shiny application
+`pr`| numeric, p-value calculated per cell
 
 ##### Details
 
-Details on the computation.
+2-way ANOVA is used for data with two grouping factors, but with more than 2 groups. It test for a significant difference in the mean between any of the groups. As such, it is a generalization of the two sample t-test that works for two groups only. The operator is based on the [anova R function](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/anova).
+
+##### References
+
+See [Analysis of variance on Wikipedia](https://en.wikipedia.org/wiki/Analysis_of_variance).
 
 ##### See Also
 
-[template_shiny_operator](https://github.com/tercen/template_shiny_operator)
-, [template_docker_operator](https://github.com/tercen/template_docker_operator)
-
+[anova1](https://github.com/tercen/anova1_operator)
