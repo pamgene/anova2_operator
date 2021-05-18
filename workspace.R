@@ -1,6 +1,5 @@
 library(tercen)
 library(dplyr)
-library(tibble)
 
 # Set appropriate options
 # options("tercen.serviceUri"="http://tercen:5400/api/v1/")
@@ -34,7 +33,7 @@ do.anova = function(df, interact = FALSE){
     } else {
       aModelError <- TRUE
     }
-    if (aModelError){  
+    if (aModelError) {  
       pFactor1 <- pFactor2 <- pFactor3 <- logp1 <- logp2 <- logp3 <- delta1 <- delta2 <- delta3 <- NaN
     }
     result <- data.frame(.ri      = df$.ri[1], 
