@@ -12,7 +12,7 @@
     "description": "Type of the grouping variable",
 	  "values": [
       "categorical",
-      "contineous"
+      "numeric"
       ]
   },
   {
@@ -22,7 +22,7 @@
     "description": "Type of the grouping variable",
 	  "values": [
       "categorical",
-      "contineous"
+      "numeric"
       ]
   },
   {

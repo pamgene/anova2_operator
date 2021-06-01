@@ -24,9 +24,6 @@ do.anova = function(df, interact = FALSE){
         logp1    <- -log10(pFactor1)
         logp2    <- -log10(pFactor2)
         logp3    <- -log10(pFactor3)
-        delta1   <- coef(aLm)[2]
-        delta2   <- coef(aLm)[3]
-        delta3   <- coef(aLm)[4]
       } else {
         aModelError <- TRUE
       }
@@ -34,7 +31,7 @@ do.anova = function(df, interact = FALSE){
       aModelError <- TRUE
     }
     if (aModelError) {  
-      pFactor1 <- pFactor2 <- pFactor3 <- logp1 <- logp2 <- logp3 <- delta1 <- delta2 <- delta3 <- NaN
+      pFactor1 <- pFactor2 <- pFactor3 <- logp1 <- logp2 <- logp3 <- NaN
     }
     result <- data.frame(.ri      = df$.ri[1], 
                          .ci      = df$.ci[1],
@@ -43,10 +40,7 @@ do.anova = function(df, interact = FALSE){
                          p1.2     = pFactor3, 
                          logp1    = logp1, 
                          logp2    = logp2, 
-                         logp1.2  = logp3, 
-                         delta1   = delta1, 
-                         delta2   = delta2, 
-                         delta1.2 = delta3)
+                         logp1.2  = logp3)
   } else {
     formula <- ".y ~ .group.colors1 + .group.colors2"
     aLm     <- try(lm(formula, data=df), silent = TRUE)
@@ -57,8 +51,6 @@ do.anova = function(df, interact = FALSE){
         pFactor2 <- anAnova['Pr(>F)'][2,]
         logp1    <- -log10(pFactor1)
         logp2    <- -log10(pFactor2)
-        delta1   <- coef(aLm)[2]
-        delta2   <- coef(aLm)[3]
       } else {
         aModelError <- TRUE
       }
@@ -66,16 +58,14 @@ do.anova = function(df, interact = FALSE){
       aModelError <- TRUE
     }
     if (aModelError) {  
-      pFactor1 <- pFactor2 <- logp1 <- logp2 <- delta1 <- delta2 <- NaN
+      pFactor1 <- pFactor2 <- logp1 <- logp2 <- NaN
     }
     result <- data.frame(.ri      = df$.ri[1], 
                          .ci      = df$.ci[1],
                          p1       = pFactor1,
                          p2       = pFactor2, 
                          logp1    = logp1, 
-                         logp2    = logp2, 
-                         delta1   = delta1, 
-                         delta2   = delta2)
+                         logp2    = logp2)
   }
   result
 }

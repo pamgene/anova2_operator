@@ -23,7 +23,6 @@ Output relations|.
 `pFactor2`          | p-value for the probability that all group means for Factor2 are equal (groupingType = categorical) or the slope of the straight line fit is equal to zero (groupingType = continuous), accounting for Factor1. Hence, a low value indicates a significant effect for Factor2.
 `pFactor3`          |  p-value for the interaction between Factor1 and Factor2 (if required). A low value for pFactor3 indicates an effect of Factor2 that is different in the groups of Factor1 (or vice versa).
 `logpFactor1-3`     | the significance of pFactors 1-3, respectively, as -10 log(pFactor).
-`delta`             | the delta of  pFactors 1-3,
 
 ##### Details
 
