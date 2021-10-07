@@ -3,7 +3,7 @@
   "name": "test",
   "namespace": "ds1",
   "inputDataUri": "groups_group2_super_exp.csv",
-  "outputDataUri": ["table1.csv","table2.csv", "table3.csv"],
+  "outputDataUri": ["table1.csv", "table2.csv", "table3.csv"],
   "columns": ["Supergroup"],
   "rows": ["Variable"],
   "colors": ["Group", "Group2"],
