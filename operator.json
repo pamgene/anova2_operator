@@ -3,32 +3,28 @@
   "description": "2 way Analysis of variance",
   "tags": ["statistical testing", "test", "linear model"],
   "authors": ["tercen"],
-  "urls": ["https://github.com/tercen/anova2_operator"],
+  "urls": ["https://github.com/pamgene/anova2_operator"],
   "properties": [
-  {
-    "kind": "EnumeratedProperty",
-    "name": "Grouping Variable 1",
-    "defaultValue": "categorical",
-    "description": "Type of the grouping variable",
-	  "values": [
-      "categorical",
-      "numeric"
-      ]
-  },
-  {
-    "kind": "EnumeratedProperty",
-    "name": "Grouping Variable 2",
-    "defaultValue": "categorical",
-    "description": "Type of the grouping variable",
-	  "values": [
-      "categorical",
-      "numeric"
-      ]
-  },
-  {
-    "kind": "BooleanProperty",
-    "name": "Include Interaction",
-    "defaultValue": false,
-    "description": "Set to TRUE if you think the coloring variables might interact to create an synergistic effect on the ouput variable."
-  } ]
+    {
+      "kind": "EnumeratedProperty",
+      "name": "Grouping Variable 1",
+      "defaultValue": "categorical",
+      "description": "Type of the grouping variable",
+      "values": ["categorical", "numeric"]
+    },
+    {
+      "kind": "EnumeratedProperty",
+      "name": "Grouping Variable 2",
+      "defaultValue": "categorical",
+      "description": "Type of the grouping variable",
+      "values": ["categorical", "numeric"]
+    },
+    {
+      "kind": "BooleanProperty",
+      "name": "Include Interaction",
+      "defaultValue": "FALSE",
+      "description": "Set to TRUE if you think the coloring variables might interact to create an synergistic effect on the ouput variable.",
+      "values": {}
+    }
+  ]
 }
